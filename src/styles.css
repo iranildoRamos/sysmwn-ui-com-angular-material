@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files*/
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*div {
+  resize: both;
+  overflow: auto;
+}*/
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+a, button {
+  margin-right: .25em
+}
+
+label {
+  font-weight: bold;
+}
+.img-qrcode {
+  position: relative;
+  background-size: 100% 100%;
+}
+
+.ui-dropdown-filter-container {
+  width: 100%;
+}
+
+

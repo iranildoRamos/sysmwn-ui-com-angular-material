@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn" >
+  <span>
+    <img
+      src="assets/logo-oficial-super-lagoa-e-lag-bordas.png"
+      class="sysmwn-logo"
+    />
+  </span>
+
+  <span class="fill-remaining-space"></span>
+
+  <button mat-button [matMenuTriggerFor]="menu1">Cadastro</button>
+  <mat-menu #menu1="matMenu">
+    <button mat-menu-item *ngIf="auth.temPermissao('ROLE_CADASTRAR_PRODUTO')" routerLinkActive="ativo" routerLink="/produtos/novo">Produto</button>
+    <button mat-menu-item>Fornecedor</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menu3">Consulta</button>
+  <mat-menu #menu3="matMenu" >
+    <button mat-menu-item *ngIf="auth.temPermissao('ROLE_PESQUISAR_PRODUTO')" [routerLink]="['/produtos']" routerLinkActive="active">Produtos</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menu2">{{ auth.jwtPayload?.nome }}</button>
+  <mat-menu #menu2="matMenu">
+    <button mat-menu-item href="javascript:;" (click)="logout()">Sair</button>
+  </mat-menu>
+
+</mat-toolbar>
+<!--<ul class="navbar-nav">
+    <li class="navbar-usuario">{{ auth.jwtPayload?.nome }}</li>
+    <li class="nav-item active">
+      <a class="nav-link" [routerLink]="['/']" routerLinkActive="active"
+        >Home <span class="sr-only">(current)</span></a
+      >
+    </li>
+    <li class="nav-item" *ngIf="auth.temPermissao('ROLE_PESQUISAR_PRODUTO')">
+      <a class="nav-link" [routerLink]="['/produtos']" routerLinkActive="active"
+        >Produtos</a
+      >
+    </li>
+    <li class="nav-item">
+      <a href="javascript:;" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+-->

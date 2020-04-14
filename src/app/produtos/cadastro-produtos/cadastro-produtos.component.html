@@ -1,0 +1,54 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<mat-card class="card">
+  <mat-grid-list cols="2" rowHeight="2:1">
+  <p>
+
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="dataCadastro" placeholder="Data de Cadastro"
+       formControlName="dataCadastro" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dataCadastro"></mat-datepicker-toggle>
+      <mat-datepicker #dataCadastro disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </p>
+
+  <mat-form-field class="example-full-width">
+    <input matInput #ean maxlength="13" placeholder="Ean" formControlName="ean">
+    <mat-hint align="end">{{ean.value.length}} / 13</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Série" formControlName="serie" (blur)="popularCampoQrcode($event.target.value)">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" *ngIf="disabled">
+    <input matInput placeholder="Gera Qrcode" formControlName="resourceWebServicesQrcode" disabled='true'>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Observações" formControlName="observacoes"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" formGroupName="categoria">
+    <mat-select placeholder="Selecione a categoria" formControlName="codigo">
+      <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria.codigo">{{ categoria.nome }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" formGroupName="marca">
+    <mat-select placeholder="Selecione a marca" formControlName="codigo">
+      <mat-option *ngFor="let marca of marcas$ | async" [value]="marca.codigo">{{ marca.nome }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" formGroupName="modelo">
+    <mat-select placeholder="Selecione o modelo" formControlName="codigo">
+      <mat-option *ngFor="let modelo of modelos$ | async" [value]="modelo.codigo">{{ modelo.nome }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-grid-list>
+<div class="example-button-row">
+  <button type="submit" matTooltip="Salvar" mat-mini-fab mat-fab color="primary" mat-card-icon class="shadow-one" [disabled]="!formulario.valid"><mat-icon>save</mat-icon></button>
+  <button mat-mini-fab matTooltip="Limpar formulario" (click)="resetar()" mat-fab color="warn" mat-card-icon class="shadow-one"><mat-icon>clear_all</mat-icon></button>&nbsp;
+</div>
+</mat-card>
+</form>
