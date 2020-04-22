@@ -11,15 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
-import * as moment from 'moment';
-import 'moment/locale/pt-br';
+// import 'moment/locale/pt-br';
 
 const material = [
   MatToolbarModule,
@@ -46,18 +45,6 @@ const material = [
 
 @NgModule({
   imports: [material],
-  exports: [material],
-  providers: [
-    {
-      provide: MAT_DATE_FORMATS,
-      useValue: { parse:
-        { dateInput: 'DD/MM/YYYY', },
-        display: { dateInput: 'DD/MM/YYYY',
-        monthYearLabel: 'MMMM YYYY',
-        dateA11yLabel: 'DD/MM/YYYY',
-        monthYearA11yLabel: 'MMMM YYYY', }, }
-    },
-  ],
-
+  exports: [material]
 })
 export class MaterialModule {}

@@ -11,6 +11,7 @@
     *ngFor="let column of columnsToDisplay"
   >
     <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+    <!-- <td mat-cell *matCellDef="let transaction">{{transaction.dataCadastro}}</td> -->
     <td mat-cell *matCellDef="let element">{{element[column]}}</td>
   </ng-container>
 
@@ -24,8 +25,8 @@
           <div class="example-element-position"><img src="{{element.resourceWebServicesQrcode}}"/></div>
         </div>
         <div class="example-element-description">
-          <span class="example-element-description-attribution">Cadatrado em: </span>
-         {{element.dataCadastro}}
+          <span class="example-element-description-attribution">Cadastro:</span>
+          {{element.dataCadastro | date:'EEEE dd/MM/yyyy' | uppercase }}
         </div>
         <div class="example-element-description">
           <span class="example-element-description-attribution">Categoria: </span>
@@ -38,6 +39,10 @@
         <div class="example-element-description">
           <span class="example-element-description-attribution">Modelo: </span>
           {{element.modelo.nome}}
+        </div>
+        <div class="example-element-description">
+          <span class="example-element-description-attribution">Observações: </span>
+          {{element.observacoes}}
         </div>
       </div>
       <h2 mat-dialog-title></h2>
@@ -64,71 +69,4 @@
   ></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-<!--<div class="card">
-  <div class="card-header">
-    <div class="float-left">
-      <h4>Produtos</h4>
-    </div>
 
-    <div class="float-right">
-      <button type="button" class="btn btn-primary pi pi-plus" [routerLink]="['novo']"></button>
-      <button type="button" class="btn btn-primary pi pi-refresh" (click)="onRefresh()">
-      </button>
-    </div>
-
-  </div>
-  <div class="card-body">
-    <table
-      class="table table-hover"
-      *ngIf="produtos$ | async as produtos; else loading"
-    >
-      <thead>
-        <tr>
-          <th>Data de Cadastro</th>
-          <th>Ean</th>
-          <th>Categoria</th>
-          <th>Marca</th>
-          <th>Modelo</th>
-          <th>Serie</th>
-          <th>Qrcode</th>
-          <th>Observações</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let produto of produtos">
-          <td>{{ produto.dataCadastro }}</td>
-          <td>{{ produto.ean }}</td>
-          <td>{{ produto.categoria.nome }}</td>
-          <td>{{ produto.marca.nome }}</td>
-          <td>{{ produto.modelo.nome }}</td>
-          <td>{{ produto.serie }}</td>
-          <td><img src="{{ produto.resourceWebServicesQrcode }}" /></td>
-          <td>{{ produto.observacoes }}</td>
-          <td>
-            <span class="float-right">
-              <button class="btn btn-primary mb-1 btn-sm pi pi-pencil">
-              </button>
-
-              <button class="btn btn-primary mb-1 btn-sm pi pi-trash">
-              </button>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ng-template #loading>
-      <span>Carregando Produtos...</span>
-    </ng-template>
-  </div>
-
-  <ng-template #deleteModal>
-    <div class="modal-body text-center">
-      <p>Tem certeza que deseja remover esse produto?</p>
-      <button type="button" class="btn btn-default">Sim</button>
-      <button type="button" class="btn btn-primary">Nao</button>
-    </div>
-  </ng-template>
-</div>
--->

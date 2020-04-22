@@ -35,16 +35,13 @@ export class PesquisaProdutosComponent implements OnInit {
   @ViewChild('filter',  {static: true}) filter: ElementRef;
 
   columnsToDisplay = [
-    'dataCadastro',
     'ean',
-    'serie',
-    'observacoes'];
+    'serie'
+  ];
 
   expandedElement: Produto | null;
 
   produtos: Produto[];
-
-  // produtos$: Observable<Produto[]>;
 
   inscricao: Subscription;
 
@@ -69,7 +66,9 @@ onEdite(produto) {
   this.router.navigate(['editar', produto], { relativeTo: this.route });
 }
   onRefresh() {
-    this.produtoService.list().subscribe(response => {
+    this.produtoService.list().subscribe(
+      response => {
+      // this.converterDatasParaStrings(response);
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -79,5 +78,4 @@ onEdite(produto) {
     handleError() {
     throw new Error('Erro ao carregar produtos. Tente novamente mais tarde.');
   }
-
 }

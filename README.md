@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
+## Subindo applicação com ip local, porta configurada na aplicação e renderizar no browser do Google
+ng serve --host=192.168.15.7 --port 8081 -o
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

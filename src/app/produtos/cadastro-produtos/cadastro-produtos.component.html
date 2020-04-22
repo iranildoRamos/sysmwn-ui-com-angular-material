@@ -1,18 +1,18 @@
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 <mat-card class="card">
+  <h1>{{ editando ? 'Edição de' : 'Novo' }} Produto</h1>
   <mat-grid-list cols="2" rowHeight="2:1">
   <p>
 
     <mat-form-field class="example-full-width">
       <input matInput [matDatepicker]="dataCadastro" placeholder="Data de Cadastro"
-       formControlName="dataCadastro" disabled>
-      <mat-datepicker-toggle matSuffix [for]="dataCadastro"></mat-datepicker-toggle>
+       formControlName="dataCadastro" (focus)="dataCadastro.open()" readonly>
+      <!-- <mat-datepicker-toggle matSuffix [for]="dataCadastro"></mat-datepicker-toggle> -->
       <mat-datepicker #dataCadastro disabled="false"></mat-datepicker>
     </mat-form-field>
-  </p>
 
   <mat-form-field class="example-full-width">
-    <input matInput #ean maxlength="13" placeholder="Ean" formControlName="ean">
+    <input matInput type="text" mask="0000000000000" #ean maxlength="13" placeholder="Ean" formControlName="ean">
     <mat-hint align="end">{{ean.value.length}} / 13</mat-hint>
   </mat-form-field>
 
