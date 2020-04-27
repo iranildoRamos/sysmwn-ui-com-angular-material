@@ -15,7 +15,9 @@ export class Modelo {
 
 export class Produto {
   codigo: number;
+
   dataCadastro: Date;
+
   ean: string;
   serie: string;
   resourceWebServicesQrcode: string;

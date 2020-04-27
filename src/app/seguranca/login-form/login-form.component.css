@@ -16,7 +16,7 @@ mat-card {
 }
 .button-login {
   background-color: #6DA033;
-  background-image: linear-gradient(bottom, #6DA033 47%, #87C442 55%);
+  background-image: linear-gradient(to bottom, #6DA033 47%, #87C442 55%);
   border-radius: 13%;
   border: 1px solid #588129;
 

@@ -15,7 +15,6 @@ import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component'
 
 import { environment } from 'src/environments/environment';
 import { map, switchMap } from 'rxjs/operators';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro-produtos',
@@ -49,9 +48,7 @@ export class CadastroProdutosComponent extends BaseFormComponent
   submit() {
 
     this.produtosService.save(this.formulario.value).subscribe(
-
-      (error) => console.error(error),
-      () => console.log('request completo')
+      () => {}
       );
     this.resetar();
     }
@@ -60,8 +57,8 @@ export class CadastroProdutosComponent extends BaseFormComponent
 
       this.route.params
       .pipe(
-        map((params: any) => params['codigo']),
-        switchMap((codigo) => this.produtosService.loadByID(codigo))
+        map((params: any) => params.codigo),
+        switchMap((codigo) => this.produtosService.buscarPorCódigo(codigo))
       )
       .subscribe((produto) => this.updateForm(produto));
 
@@ -107,6 +104,8 @@ export class CadastroProdutosComponent extends BaseFormComponent
       marca: dados.marca,
       modelo: dados.modelo,
     });
+    console.log(this.formulario.value);
+    console.log(dados.dataCadastro);
   }
   popularCampoQrcode() {
     const serie = this.formulario.get('serie').value;

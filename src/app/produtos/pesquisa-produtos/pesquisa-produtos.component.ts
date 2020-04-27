@@ -26,7 +26,6 @@ import { ProdutosService } from './../produtos-service.service';
 })
 
 export class PesquisaProdutosComponent implements OnInit {
-
   // tslint:disable-next-line: no-use-before-declare
   dataSource = new MatTableDataSource<Produto>();
 
@@ -54,12 +53,11 @@ export class PesquisaProdutosComponent implements OnInit {
 
     }
 
-  ngOnInit() {
-    this.onRefresh();
-  }
-
+    ngOnInit() {
+      this.onRefresh();
+    }
 onDelete(produto) {
-  this.produtoService.remove(produto).subscribe(()=>{});
+  this.produtoService.remove(produto).subscribe(() => {});
   this.onRefresh();
 }
 onEdite(produto) {
@@ -68,7 +66,6 @@ onEdite(produto) {
   onRefresh() {
     this.produtoService.list().subscribe(
       response => {
-      // this.converterDatasParaStrings(response);
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
